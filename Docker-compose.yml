@@ -1,0 +1,11 @@
+version: '3.5'
+
+services:
+  app:
+    container_name: php-chan
+    build:
+      context: .Docker
+    volumes:
+      - ./app:/var/www/phpchan
+    ports:
+      - 8088:80
