@@ -6,6 +6,28 @@ services:
     build:
       context: docker
     volumes:
-      - ./app:/var/www/phpchan
+      - ./phpchan:/var/www/phpchan
     ports:
-      - 8088:80
+      - 8080:80
+    networks:
+      - netchan
+    links:
+      - 'db'
+  db:
+    image: mysql:5.7
+    command: '--default-authentication-plugin=mysql_native_password --net_buffer_length=1000000 --max_allowed_packet=1000000000'
+    volumes:
+      - dbchan:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+      - MYSQL_DATABASE=phpchan
+    ports:
+      - 8081:3306
+    networks:
+      - netchan
+
+volumes:
+  dbchan:
+
+networks:
+  netchan:
