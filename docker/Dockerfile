@@ -24,7 +24,7 @@ RUN cd /etc/apache2/mods-available && a2enmod rewrite
 COPY virtualHost.conf /etc/apache2/sites-enabled/000-default.conf
 COPY php.ini /etc/php/7.4/apache2/php.ini
 
-WORKDIR /var/www/php-chan
+WORKDIR /var/www/phpchan
 
 EXPOSE 80
 

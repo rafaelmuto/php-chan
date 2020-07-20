@@ -4,7 +4,7 @@ services:
   app:
     container_name: php-chan
     build:
-      context: .Docker
+      context: docker
     volumes:
       - ./app:/var/www/phpchan
     ports:
