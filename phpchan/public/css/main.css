@@ -1,0 +1,26 @@
+html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: monospace;
+}
+
+.main {
+    width: 80%;
+    max-width: 900px;
+
+    border: 2px solid black;
+    border-radius: 5px;
+
+    margin: 5rem auto;
+    padding: 1rem;
+}
+
+.main hr {
+    border: 1px solid black;
+}
+
+

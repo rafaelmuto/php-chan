@@ -6,7 +6,7 @@ services:
     build:
       context: docker
     volumes:
-      - ./phpchan:/var/www/phpchan
+      - ./phpchan:/var/www/phpchan:delegated
     ports:
       - 8080:80
     networks:
