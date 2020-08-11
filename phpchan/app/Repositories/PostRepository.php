@@ -13,11 +13,9 @@ class PostRepository extends AbstractRepository
         $this->model = $model;
     }
 
-    public function create($data)
+    public function create(array $data)
     {
         $data['password'] = bcrypt($data['password']);
-
-//        dd($data);
 
         return $this->model->create($data);
     }

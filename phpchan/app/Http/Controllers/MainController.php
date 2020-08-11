@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use App\Repositories\PostRepository;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class MainController extends Controller
 {
@@ -24,15 +26,33 @@ class MainController extends Controller
         return view('main', ['posts' => $posts]);
     }
 
-    public function newPost(Request $req)
+    public function newPost(Request $request)
     {
-        $req->validate([
-            'userName' => 'required'
-        ]);
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
 
-        $this->postRepository->create($req->all());
+            $validatedData = $request->validate([
+                'userName' => 'string|max:40',
+                'image' => 'mimes:jpeg,png,gif|max:2048',
+                'password' => 'required'
+            ]);
 
-        return redirect()->route('main.post');
+            $originalName = $request->image->getClientOriginalName();
+            $date = new Carbon();
+            $fileName = $date->format('YmdHis') . "." . $originalName;
+
+            $request->image->storeAs('public/images', $fileName);
+
+            $this->postRepository->create([
+                'userName' => $validatedData['userName'],
+                'message' => $request->message,
+                'image' => $fileName,
+                'password' => $validatedData['password']
+            ]);
+
+            return redirect()->route('main.post');
+        }
+
+        abort(500, 'Could not upload image...');
     }
 
 }

@@ -23,4 +23,26 @@ body {
     border: 1px solid black;
 }
 
+.post {
+    display: grid;
+    grid-template-rows: auto auto auto;
+}
 
+.post_id {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.post_content {
+    display: grid;
+    grid-template-columns: 30% auto;
+}
+
+.post_image {
+    max-width: 100%;
+}
+
+.post_message {
+    margin: 0;
+    padding-left: 1rem;
+}

@@ -19,3 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/test', 'ApiController@test');
+Route::get('/posts/all', 'ApiController@allPosts');
